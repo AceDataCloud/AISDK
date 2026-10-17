@@ -71,3 +71,16 @@ test('GPT Image cannot route a media request to another model family', async () 
   }
   assert.equal(f.calls.length,0);await c.close();
 });
+
+test('ambiguous generation transport failure is not retried; MCP errors remain intact', async () => {
+  const service=services[0], f=fixture(service), name=service.writeTools[0];
+  let attempts=0;
+  f.definitions[name].execute=async()=>{attempts++;throw new Error('ambiguous timeout');};
+  const c=await connectService(service,{apiKey:'fixture-key',mode:'generate',authorize:()=>true},f.factory);
+  await assert.rejects(c.tools[name].execute({prompt:'x'},{}),/ambiguous timeout/);
+  assert.equal(attempts,1);await c.close();
+  const f2=fixture(service);const original={isError:true,content:[{type:'text',text:'403 content rejected'}]};
+  f2.definitions[name].execute=async()=>original;
+  const c2=await connectService(service,{apiKey:'fixture-key',mode:'generate',authorize:()=>true},f2.factory);
+  assert.equal(await c2.tools[name].execute({prompt:'x'},{}),original);await c2.close();
+});
