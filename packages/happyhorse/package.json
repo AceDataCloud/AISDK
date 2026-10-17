@@ -14,7 +14,8 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "README_zh-CN.md"
   ],
   "engines": {
     "node": ">=22"

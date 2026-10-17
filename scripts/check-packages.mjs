@@ -8,7 +8,7 @@ for(const s of services){
   if(r.status!==0)throw new Error(r.stderr);
   const [pack]=JSON.parse(r.stdout);
   const names=pack.files.map(f=>f.path);
-  for(const required of ['dist/index.js','dist/index.d.ts','dist/connector.js','README.md','LICENSE']){
+  for(const required of ['dist/index.js','dist/index.d.ts','dist/connector.js','README.md','README_zh-CN.md','LICENSE']){
     if(!names.includes(required))throw new Error(`${p.name} missing ${required}`);
   }
   if(names.some(n=>n.includes('.env')||n.includes('test')||n.includes('artifacts')))throw new Error('Unexpected package file');
