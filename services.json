@@ -1,0 +1,7 @@
+[
+  {"id":"suno","name":"Suno","factory":"createSunoTools","endpoint":"https://suno.mcp.acedata.cloud/mcp","readTools":["suno_get_task","suno_get_tasks_batch","suno_list_models","suno_list_actions"],"writeTools":["suno_generate_music","suno_generate_custom_music","suno_extend_music","suno_cover_music"]},
+  {"id":"seedance","name":"Seedance","factory":"createSeedanceTools","endpoint":"https://seedance.mcp.acedata.cloud/mcp","readTools":["seedance_get_task","seedance_get_tasks_batch"],"writeTools":["seedance_generate_video","seedance_generate_video_from_image"]},
+  {"id":"happyhorse","name":"HappyHorse","factory":"createHappyHorseTools","endpoint":"https://happyhorse.mcp.acedata.cloud/mcp","readTools":["happyhorse_get_task","happyhorse_get_tasks_batch"],"writeTools":["happyhorse_generate_video","happyhorse_generate_video_from_image","happyhorse_generate_video_from_references","happyhorse_edit_video"]},
+  {"id":"gpt-image","name":"GPT Image","factory":"createGPTImageTools","endpoint":"https://openai.mcp.acedata.cloud/mcp","readTools":["openai_get_task"],"writeTools":["openai_generate_image","openai_edit_image"]},
+  {"id":"nano-banana","name":"Nano Banana","factory":"createNanoBananaTools","endpoint":"https://nanobanana.mcp.acedata.cloud/mcp","readTools":["nanobanana_get_task","nanobanana_get_tasks_batch"],"writeTools":["nanobanana_generate_image","nanobanana_edit_image"]}
+]
