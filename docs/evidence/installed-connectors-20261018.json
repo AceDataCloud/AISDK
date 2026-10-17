@@ -1,0 +1,48 @@
+{
+  "asOf": "2026-10-17T18:45:19.739Z",
+  "results": [
+    {
+      "service": "suno",
+      "tools": [
+        "suno_get_task",
+        "suno_get_tasks_batch",
+        "suno_list_models",
+        "suno_list_actions"
+      ],
+      "status": "PASS"
+    },
+    {
+      "service": "seedance",
+      "tools": [
+        "seedance_get_task",
+        "seedance_get_tasks_batch"
+      ],
+      "status": "PASS"
+    },
+    {
+      "service": "happyhorse",
+      "tools": [
+        "happyhorse_get_task",
+        "happyhorse_get_tasks_batch"
+      ],
+      "status": "PASS"
+    },
+    {
+      "service": "gpt-image",
+      "tools": [
+        "openai_get_task"
+      ],
+      "status": "PASS"
+    },
+    {
+      "service": "nano-banana",
+      "tools": [
+        "nanobanana_get_task",
+        "nanobanana_get_tasks_batch"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "toolCalls": 0,
+  "paidRequests": 0
+}

@@ -21,8 +21,11 @@ npm ci --ignore-scripts
 npm run build
 npm test
 npm run check
+npm run verify:packages
 # Optional hosted discovery; only initialize/tools/list, no tools/call:
 npm run verify:discovery
 ```
 
 Core service implementation stays in [MCPs](https://github.com/AceDataCloud/MCPs). Images and task/price contracts are documented per service. Never commit `.env` or print credentials. Only publish reviewed artifacts; source PR merge, npm publication, registry review, normal installation and a real task/bill are independent stages.
+
+Hosted verification on 2026-10-18: all five package entry points connected with an existing application key and exposed the expected read-only tool subset. Only initialization/discovery ran; no tools/call or paid generation. See [evidence](docs/evidence/installed-connectors-20261018.json). Five packed tarballs also installed/imported in a clean npm project.
