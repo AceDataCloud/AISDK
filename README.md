@@ -1,5 +1,7 @@
 # Ace Data Cloud tools for Vercel AI SDK
 
+> **Service status, 2026-10-19:** Seedance npm 0.1.0 is published and installs/imports, but its hosted MCP initialization currently returns HTTP 500. Its official Tools Registry entry is on hold until service recovery is verified. The other four service discovery checks passed. Installation and historical discovery are not proof of current Seedance generation availability; no paid call was made.
+
 Five independently installable, service-branded AI SDK tool packages, backed by existing Ace hosted MCP services. Default read-only tools, explicit application approval for paid generation, preserved async task handles and no automatic paid retries.
 
 | Service | Package | Integration guide |
