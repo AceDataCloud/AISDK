@@ -12,7 +12,7 @@ Five independently installable, service-branded AI SDK tool packages, backed by 
 
 ## Status
 
-Source PR #1 is merged. Independent v0.1.0 GitHub release artifacts are being prepared; npm publication and official Tools Registry listing are separate stages. No new paid generation is claimed. Each npm package is separate; one repository/shared connector avoids duplicate protocol code. AI SDK's official Tools Registry requires npm publication, current SDK testing and an integration-specific guide before submission. This repository is not a Vercel first-party provider or AI Gateway listing.
+Source PR #1 is merged. All five npm packages at 0.1.0 and independent GitHub release artifacts are published; official Tools Registry listing is a separate stage. No new paid generation is claimed. Each npm package is separate; one repository/shared connector avoids duplicate protocol code. AI SDK's official Tools Registry requires npm publication, current SDK testing and an integration-specific guide before submission. This repository is not a Vercel first-party provider or AI Gateway listing.
 
 ## Development
 
@@ -33,3 +33,5 @@ Hosted verification on 2026-10-18: all five package entry points connected with 
 ## Release validation
 
 The manually dispatched Release validation workflow checks current AI SDK 7.0.143 / MCP 2.0.78 / compatible 3.0.71 against the connector-relevant protocol behavior and type surface, then packs the five artifacts. Optional npm publication uses only an already available repository/org `NPM_TOKEN`; it does not create tokens, change scope membership, or grant permissions. Default is validation only. Network and identity failures are recorded separately.
+
+Dedicated English/Chinese integration documentation: https://acedatacloud.github.io/AISDK/ . Official npm version/integrity readback: https://github.com/AceDataCloud/AISDK/actions/runs/39169024708 .

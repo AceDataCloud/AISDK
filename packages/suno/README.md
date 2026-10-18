@@ -4,7 +4,7 @@ Use Suno in Vercel AI SDK applications through Ace Data Cloud's hosted MCP servi
 
 ## Install and discovery status
 
-Target official listing: [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools). **Not listed yet.** The source is merged. Version 0.1.0 is prepared as a GitHub release artifact; npm publication is tracked separately and not yet confirmed. The command below is the intended npm path, not proof of npm availability. Use the release tarball instructions below until registry publication is verified.
+Target official listing: [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools). **Not listed yet.** Version **0.1.0 is published on npm**, with provenance and exact registry integrity readback verified on 2026-10-19. The independent GitHub release archive is also available. Official AI SDK Tools Registry acceptance is a separate stage; this service is not listed there yet.
 
 ```bash
 npm install @acedatacloud/ai-sdk-suno ai@^7 zod@^4
@@ -18,7 +18,7 @@ npm install https://github.com/AceDataCloud/AISDK/releases/download/v0.1.0/aceda
 
 Use the exact asset URL and compare its SHA-256 with `SHA256SUMS.txt` on [release v0.1.0](https://github.com/AceDataCloud/AISDK/releases/tag/v0.1.0). A GitHub artifact is not an npm or official Tools Registry listing. Release availability is tracked on that page.
 
-Node.js 22+ is required. Keep dependencies within one AI SDK major. The current fixture/type checks use AI SDK 7.0.137 and MCP 2.0.73.
+Node.js 22+ is required. Keep dependencies within one AI SDK major. The release runner also validated the current AI SDK 7.0.143 / MCP 2.0.78 / compatible 3.0.71 with a real local protocol fixture and type checks. No paid generation was run.
 
 ## Get your Ace application API key
 
@@ -111,4 +111,4 @@ Official Chatbot original last changed 2026-03-20; edited reference dated 2026-1
 
 ## Verification and ownership
 
-The initial candidate is tested with free fixtures and hosted discovery only. No new paid generation is claimed. These npm packages reuse hosted service implementations from [AceDataCloud/MCPs](https://github.com/AceDataCloud/MCPs); they do not fork provider workers, prices or model fallbacks. [中文说明](README_zh-CN.md).
+The published package is tested with free fixtures and hosted discovery only. No new paid generation is claimed. These npm packages reuse hosted service implementations from [AceDataCloud/MCPs](https://github.com/AceDataCloud/MCPs); they do not fork provider workers, prices or model fallbacks. [中文说明](README_zh-CN.md).
