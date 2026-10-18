@@ -1,6 +1,6 @@
 # Seedance by Ace Data Cloud：AI SDK 工具
 
-> **2026-10-19 服务状态**：npm包0.1.0已发布并通过安装/import，但托管Seedance MCP初始化当前重复返回HTTP500。官方工具目录投稿暂不包含本服务，待底层服务恢复并复验后补回。不要将旧工具发现记录或npm安装视为当前生成可用证明；本轮未新发生成。
+> **2026-10-19 服务恢复**：Seedance限定范围的认证依赖感知readiness缓解已正式部署；双副本/多协议/多客户端与336秒稳定性检查通过。07:12上海使用已发布0.1.0包进行一次免费初始化/工具发现也通过，现已恢复到原官方工具目录候选PR。历史故障观察到OAuth吊销Redis查询连接拒绝，底层瞬时原因仍未确定；不是SDK缺陷或全部REST故障结论。包未重发、Token未更换、没有新生成。目录仍待官方接收，这不证明收费生成/账单完成。
 
 这是 Ace Data Cloud 维护的 Seedance 接入，不冒充模型原厂或 Vercel 官方。独立包 `@acedatacloud/ai-sdk-seedance` 复用现有托管 MCP；目标是进入 [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools)，**0.1.0 已发布npm并核对integrity，官方工具目录尚未收录**。
 
