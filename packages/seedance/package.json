@@ -1,0 +1,52 @@
+{
+  "name": "@acedatacloud/ai-sdk-seedance",
+  "version": "0.1.0",
+  "description": "Seedance by Ace Data Cloud: AI SDK tools for generation and persistent task lookup via hosted MCP.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "README_zh-CN.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AceDataCloud/AISDK.git",
+    "directory": "packages/seedance"
+  },
+  "homepage": "https://github.com/AceDataCloud/AISDK/tree/main/packages/seedance#readme",
+  "bugs": {
+    "url": "https://github.com/AceDataCloud/AISDK/issues"
+  },
+  "keywords": [
+    "seedance",
+    "seedance",
+    "ai-sdk",
+    "vercel",
+    "mcp",
+    "acedatacloud"
+  ],
+  "dependencies": {
+    "@ai-sdk/mcp": "^2.0.73"
+  },
+  "peerDependencies": {
+    "ai": "^7.0.137",
+    "zod": "^3.25.76 || ^4.1.8"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}

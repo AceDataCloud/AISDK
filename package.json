@@ -1,0 +1,26 @@
+{
+  "name": "acedatacloud-ai-sdk-integrations",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "tsc --noEmit",
+    "verify:discovery": "node scripts/discover.mjs",
+    "verify:packages": "node scripts/check-packages.mjs"
+  },
+  "devDependencies": {
+    "@ai-sdk/mcp": "2.0.73",
+    "@ai-sdk/openai-compatible": "^3.0.67",
+    "@types/node": "^22.0.0",
+    "ai": "7.0.137",
+    "typescript": "^5.9.3",
+    "zod": "4.1.8"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

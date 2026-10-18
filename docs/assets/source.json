@@ -1,0 +1,19 @@
+{
+  "as_of": "2026-10-18",
+  "api_key_images": {
+    "source_repository": "https://github.com/AceDataCloud/SunoDify/tree/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial",
+    "files": [
+      "get-api-key-en.png",
+      "create-api-key-en.png"
+    ],
+    "limitations": "Existing console screenshots; no visible live credentials, not AI SDK UI."
+  },
+  "chatbot_preview": {
+    "file": "official-chatbot-edit-20261017.png",
+    "type": "official_screenshot_edit",
+    "original": "https://github.com/vercel/chatbot/blob/c2f8235e1f3ea903ad8b7f61447c4f74164b5c58/public/preview.png",
+    "original_last_change": "2026-03-20",
+    "edited_date": "2026-10-17",
+    "limitations": "Not Ace actual execution or proof of availability; no added provider GUI."
+  }
+}

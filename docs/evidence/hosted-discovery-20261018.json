@@ -1,0 +1,81 @@
+{
+  "asOf": "2026-10-17T18:26:12.392Z",
+  "operations": [
+    "initialize",
+    "tools/list"
+  ],
+  "toolCalls": 0,
+  "paidRequests": 0,
+  "results": [
+    {
+      "service": "suno",
+      "endpoint": "https://suno.mcp.acedata.cloud/mcp",
+      "status": "PASS",
+      "missing": [],
+      "matched": [
+        "suno_get_task",
+        "suno_get_tasks_batch",
+        "suno_list_models",
+        "suno_list_actions",
+        "suno_generate_music",
+        "suno_generate_custom_music",
+        "suno_extend_music",
+        "suno_cover_music"
+      ],
+      "totalDiscovered": 42
+    },
+    {
+      "service": "seedance",
+      "endpoint": "https://seedance.mcp.acedata.cloud/mcp",
+      "status": "PASS",
+      "missing": [],
+      "matched": [
+        "seedance_get_task",
+        "seedance_get_tasks_batch",
+        "seedance_generate_video",
+        "seedance_generate_video_from_image"
+      ],
+      "totalDiscovered": 7
+    },
+    {
+      "service": "happyhorse",
+      "endpoint": "https://happyhorse.mcp.acedata.cloud/mcp",
+      "status": "PASS",
+      "missing": [],
+      "matched": [
+        "happyhorse_get_task",
+        "happyhorse_get_tasks_batch",
+        "happyhorse_generate_video",
+        "happyhorse_generate_video_from_image",
+        "happyhorse_generate_video_from_references",
+        "happyhorse_edit_video"
+      ],
+      "totalDiscovered": 7
+    },
+    {
+      "service": "gpt-image",
+      "endpoint": "https://openai.mcp.acedata.cloud/mcp",
+      "status": "PASS",
+      "missing": [],
+      "matched": [
+        "openai_get_task",
+        "openai_generate_image",
+        "openai_edit_image"
+      ],
+      "totalDiscovered": 15
+    },
+    {
+      "service": "nano-banana",
+      "endpoint": "https://nanobanana.mcp.acedata.cloud/mcp",
+      "status": "PASS",
+      "missing": [],
+      "matched": [
+        "nanobanana_get_task",
+        "nanobanana_get_tasks_batch",
+        "nanobanana_generate_image",
+        "nanobanana_edit_image"
+      ],
+      "totalDiscovered": 4
+    }
+  ]
+}
