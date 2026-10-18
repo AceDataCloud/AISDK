@@ -1,0 +1,21 @@
+name: Public npm installation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  install:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: node scripts/verify-public-install.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-npm-installation
+          path: artifacts/public-install.json
+          retention-days: 90

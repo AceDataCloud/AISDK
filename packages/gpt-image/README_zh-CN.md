@@ -1,8 +1,8 @@
 # GPT Image by Ace Data Cloud：AI SDK 工具
 
-这是 Ace Data Cloud 维护的 GPT Image 接入，不冒充模型原厂或 Vercel 官方。独立包 `@acedatacloud/ai-sdk-gpt-image` 复用现有托管 MCP；目标是进入 [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools)，**当前未收录、0.1.0 尚为发布候选**。
+这是 Ace Data Cloud 维护的 GPT Image 接入，不冒充模型原厂或 Vercel 官方。独立包 `@acedatacloud/ai-sdk-gpt-image` 复用现有托管 MCP；目标是进入 [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools)，**0.1.0 已发布npm并核对integrity，官方工具目录尚未收录**。
 
-1. 包发布后安装 `npm install @acedatacloud/ai-sdk-gpt-image ai@^7 zod@^4`（Node ≥22）；未发布前按本仓 PR 审查，不把命令视为已上线。
+1. 直接安装 `npm install @acedatacloud/ai-sdk-gpt-image ai@^7 zod@^4`（Node ≥22）。npm与GitHub正式包已发布，官方Tools Registry收录及收费生成另行验收。
 2. 打开 [Ace Applications](https://platform.acedata.cloud/console/applications?utm_source=vercel_ai_sdk&utm_medium=integration&utm_campaign=evergreen&utm_content=gpt-image_zh_api_key)，注册或登录，找到 General application；没有则 Initialize General Application。复制 API Key，或 Keys / Manage Keys → Create 单独命名 Key，核有效期、用量限制、Allowed APIs、服务权限和余额。[当前价格](https://platform.acedata.cloud/models?utm_source=vercel_ai_sdk&utm_medium=integration&utm_campaign=evergreen&utm_content=gpt-image_zh_pricing)。
 3. 将原始 token 放服务器 `ACEDATACLOUD_API_KEY`，不是浏览器，不带 Bearer 前缀；账户管理 token 不适用。调用 `createGPTImageTools()` 得到默认只读工具，不会自动生成。
 4. 应用完成用户确认后才启用 `mode:'generate'` 和逐调用 `authorize` 回调，再把 `connection.tools` 交给模型。保存 create 返回的原 task ID，用 `openai_get_task` 查询至终态；超时不重复提交。最终媒体由应用自己的图片/音频/视频组件展示。
