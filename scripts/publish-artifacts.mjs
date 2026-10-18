@@ -1,10 +1,11 @@
 // Run only in the manually authorized release job with an existing publisher token.
 import { readdirSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { resolve } from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 const dir=process.argv[2]??'packages';
 for(const file of readdirSync(dir).filter(name=>name.endsWith('.tgz')).sort()){
-  const path=`${dir}/${file}`;
+  const path=resolve(dir,file);
   const manifest=JSON.parse(execFileSync('tar',['-xOf',path,'package/package.json'],{encoding:'utf8'}));
   if(!/^@acedatacloud\/ai-sdk-(suno|seedance|happyhorse|gpt-image|nano-banana)$/.test(manifest.name)||manifest.version!=='0.1.0'){
     throw new Error('Unexpected release package identity');
