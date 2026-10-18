@@ -8,8 +8,12 @@ on:
         default: false
 permissions:
   contents: read
+concurrency:
+  group: media-tool-release
+  cancel-in-progress: false
 jobs:
   artifacts:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,11 +29,20 @@ jobs:
           npm run build
           node --test tests/mcp-version-contract.test.mjs
           npm run check
-          npm ls ai @ai-sdk/mcp @ai-sdk/openai-compatible
+          mkdir -p artifacts
+          node --input-type=module <<'JS'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          const versions = Object.fromEntries(['ai', '@ai-sdk/mcp', '@ai-sdk/openai-compatible'].map(name => [name, JSON.parse(readFileSync(`node_modules/${name}/package.json`, 'utf8')).version]));
+          if (versions.ai !== '7.0.143' || versions['@ai-sdk/mcp'] !== '2.0.78' || versions['@ai-sdk/openai-compatible'] !== '3.0.71') throw new Error('Installed version mismatch');
+          console.log(versions);
+          writeFileSync('artifacts/current-sdk-versions.json', JSON.stringify(versions, null, 2) + '\n');
+          JS
       - name: Pack release artifacts
         run: npm run verify:packages
       - name: Save release checksums
-        run: sha256sum artifacts/packs/*.tgz > artifacts/packs/SHA256SUMS.txt
+        run: |
+          sha256sum artifacts/packs/*.tgz | sed 's#artifacts/packs/##' > artifacts/packs/SHA256SUMS.txt
+          cp artifacts/current-sdk-versions.json artifacts/packs/current-sdk-versions.json
       - uses: actions/upload-artifact@v4
         with:
           name: ai-sdk-media-0.1.0
@@ -37,7 +50,10 @@ jobs:
           retention-days: 30
   publish:
     needs: artifacts
-    if: inputs.publish_npm
+    if: inputs.publish_npm && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
