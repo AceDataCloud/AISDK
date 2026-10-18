@@ -89,7 +89,7 @@ All other server tools stay hidden; `tools` can restrict the published allowlist
 
 ## Interface reference
 
-![Official Chatbot screenshot adaptation, not an Ace execution](https://raw.githubusercontent.com/AceDataCloud/AISDK/main/docs/assets/official-chatbot-edit-20261017.png)
+![Official Chatbot screenshot adaptation, not an Ace execution](https://raw.githubusercontent.com/AceDataCloud/AISDK/e47452803a761d0d7b53ac362884eb3d5edfe87d/docs/assets/official-chatbot-edit-20261017.png)
 
 Official Chatbot original last changed 2026-03-20; edited reference dated 2026-10-17. This is **not actual Ace execution**, not a new GUI or proof of registry listing. [Original source](https://github.com/vercel/chatbot/blob/c2f8235e1f3ea903ad8b7f61447c4f74164b5c58/public/preview.png).
 
