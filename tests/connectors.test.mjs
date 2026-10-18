@@ -23,6 +23,7 @@ for (const service of services) {
     const f = fixture(service);
     const c = await connectService(service, { apiKey: 'fixture-key' }, f.factory);
     assert.deepEqual(Object.keys(c.tools), service.readTools);
+    assert.equal(f.config.maxRetries, 0);
     assert.equal(f.config.transport.url, service.endpoint);
     assert.equal(f.config.transport.headers.Authorization, 'Bearer fixture-key');
     const result = await c.tools[service.readTools[0]].execute({ task_id: 'original-task' }, {});

@@ -18,6 +18,7 @@ export async function connectService(service, options = {}, clientFactory = crea
     throw new Error('Requested tool is outside this service and mode allowlist.');
   }
   const client = await clientFactory({
+    maxRetries: 0,
     transport: {
       type: 'http', url: service.endpoint,
       headers: { Authorization: `Bearer ${apiKey}` },

@@ -4,11 +4,19 @@ Use Nano Banana in Vercel AI SDK applications through Ace Data Cloud's hosted MC
 
 ## Install and discovery status
 
-Target official listing: [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools). **Not listed yet.** Version 0.1.0 is a release candidate until the package is published; the command below is the intended npm install path, not a publication claim. See the repository PR/release for status.
+Target official listing: [AI SDK Tools Registry](https://ai-sdk.dev/resources/tools). **Not listed yet.** The source is merged. Version 0.1.0 is prepared as a GitHub release artifact; npm publication is tracked separately and not yet confirmed. The command below is the intended npm path, not proof of npm availability. Use the release tarball instructions below until registry publication is verified.
 
 ```bash
 npm install @acedatacloud/ai-sdk-nano-banana ai@^7 zod@^4
 ```
+
+### Install an independently packaged GitHub release
+
+```bash
+npm install https://github.com/AceDataCloud/AISDK/releases/download/v0.1.0/acedatacloud-ai-sdk-nano-banana-0.1.0.tgz ai@^7 zod@^4
+```
+
+Use the exact asset URL and compare its SHA-256 with `SHA256SUMS.txt` on [release v0.1.0](https://github.com/AceDataCloud/AISDK/releases/tag/v0.1.0). A GitHub artifact is not an npm or official Tools Registry listing. Release availability is tracked on that page.
 
 Node.js 22+ is required. Keep dependencies within one AI SDK major. The current fixture/type checks use AI SDK 7.0.137 and MCP 2.0.73.
 

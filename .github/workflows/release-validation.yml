@@ -1,0 +1,61 @@
+name: Release validation
+on:
+  workflow_dispatch:
+    inputs:
+      publish_npm:
+        description: Publish verified 0.1.0 artifacts using the existing NPM_TOKEN, if available
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate only current SDK differences
+        run: |
+          npm install --no-save --package-lock=false --ignore-scripts --no-audit --no-fund ai@7.0.143 @ai-sdk/mcp@2.0.78 @ai-sdk/openai-compatible@3.0.71
+          npm run build
+          node --test tests/mcp-version-contract.test.mjs
+          npm run check
+          npm ls ai @ai-sdk/mcp @ai-sdk/openai-compatible
+      - name: Pack release artifacts
+        run: npm run verify:packages
+      - name: Save release checksums
+        run: sha256sum artifacts/packs/*.tgz > artifacts/packs/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ai-sdk-media-0.1.0
+          path: artifacts/packs/*
+          retention-days: 30
+  publish:
+    needs: artifacts
+    if: inputs.publish_npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - uses: actions/download-artifact@v4
+        with:
+          name: ai-sdk-media-0.1.0
+          path: packages
+      - name: Confirm existing publisher and publish fixed package artifacts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo 'No existing NPM_TOKEN is available to this repository. No new token or permission was created.'
+            exit 1
+          fi
+          npm whoami
+          node scripts/publish-artifacts.mjs packages
