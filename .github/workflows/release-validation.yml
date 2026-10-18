@@ -6,6 +6,10 @@ on:
         description: Publish verified 0.1.0 artifacts using the existing NPM_TOKEN, if available
         type: boolean
         default: false
+      already_accepted:
+        description: Comma-separated slugs previously accepted by npm; read back only, never republish
+        type: string
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -68,6 +72,7 @@ jobs:
       - name: Confirm existing publisher and publish fixed package artifacts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_ALREADY_ACCEPTED: ${{ inputs.already_accepted }}
         run: |
           if [ -z "$NODE_AUTH_TOKEN" ]; then
             echo 'No existing NPM_TOKEN is available to this repository. No new token or permission was created.'
@@ -75,3 +80,10 @@ jobs:
           fi
           npm whoami
           node scripts/publish-artifacts.mjs packages
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: npm-publication-state
+          path: publication-state.json
+          if-no-files-found: warn
+          retention-days: 90
