@@ -2,10 +2,11 @@
 
 > **Seedance recovery, 2026-10-19:** A Seedance-only authentication-dependency readiness mitigation is deployed, with two-replica/protocol/client checks and a 336-second observation accepted. One fresh free session through the published 0.1.0 package passed initialization/tool discovery at 07:12 Asia/Shanghai. The entry is restored to the existing official Tools Registry proposal, still awaiting acceptance. The prior failure was observed in the OAuth revocation Redis lookup; the underlying transient cause remains unknown, not established as an SDK defect or all-REST outage. No package republish, token change, generation or billing claim.
 
-Five independently installable, service-branded AI SDK tool packages, backed by existing Ace hosted MCP services. Default read-only tools, explicit application approval for paid generation, preserved async task handles and no automatic paid retries.
+Service-specific AI SDK tool packages, backed by existing Ace hosted MCP services. Default read-only tools, explicit application approval for paid generation, preserved async task handles and no automatic paid retries.
 
 | Service | Package | Integration guide |
 | --- | --- | --- |
+| ACE Music by Ace Data Cloud | `@acedatacloud/ai-sdk-acemusic` (build from source) | [English](packages/acemusic/README.md) · [中文](packages/acemusic/README_zh-CN.md) |
 | Suno by Ace Data Cloud | `@acedatacloud/ai-sdk-suno` | [English](packages/suno/README.md) · [中文](packages/suno/README_zh-CN.md) |
 | Seedance by Ace Data Cloud | `@acedatacloud/ai-sdk-seedance` | [English](packages/seedance/README.md) · [中文](packages/seedance/README_zh-CN.md) |
 | HappyHorse by Ace Data Cloud | `@acedatacloud/ai-sdk-happyhorse` | [English](packages/happyhorse/README.md) · [中文](packages/happyhorse/README_zh-CN.md) |
@@ -14,7 +15,7 @@ Five independently installable, service-branded AI SDK tool packages, backed by 
 
 ## Status
 
-Source PR #1 is merged. All five npm packages at 0.1.0 and independent GitHub release artifacts are published; official Tools Registry listing is a separate stage. No new paid generation is claimed. Each npm package is separate; one repository/shared connector avoids duplicate protocol code. AI SDK's official Tools Registry requires npm publication, current SDK testing and an integration-specific guide before submission. This repository is not a Vercel first-party provider or AI Gateway listing.
+Source PR #1 is merged. The five previously released npm packages at 0.1.0 and independent GitHub release artifacts are published; official Tools Registry listing is a separate stage. No new paid generation is claimed. Each npm package is separate; one repository/shared connector avoids duplicate protocol code. AI SDK's official Tools Registry requires npm publication, current SDK testing and an integration-specific guide before submission. This repository is not a Vercel first-party provider or AI Gateway listing.
 
 ## Development
 
