@@ -5,7 +5,9 @@ import { resolve } from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 const dir=process.argv[2]??'packages';
 const accepted=new Set((process.env.NPM_ALREADY_ACCEPTED??'').split(',').map(x=>x.trim()).filter(Boolean));
-const allowed=['suno','seedance','happyhorse','gpt-image','nano-banana'];
+const allowed=['suno','seedance','happyhorse','gpt-image','nano-banana','acemusic'];
+const selected = process.argv[3];
+if (selected && !allowed.includes(selected)) throw new Error('Unknown package to publish');
 if([...accepted].some(x=>!allowed.includes(x)))throw new Error('Unknown previously accepted package');
 const states=[];
 const save=()=>writeFileSync('publication-state.json',JSON.stringify({asOf:new Date().toISOString(),publisher:process.env.NPM_PUBLISHER??'verified-by-whoami',states},null,2)+'\n');
@@ -20,17 +22,20 @@ function check(state,found){
   if(found.version!=='0.1.0'||found.integrity!==state.integrity)throw new Error(`Existing ${state.name} version/integrity differs; no overwrite`);
   state.status='PUBLIC_VERIFIED';state.registry=found;save();return true;
 }
-for(const file of readdirSync(dir).filter(x=>x.endsWith('.tgz')).sort()){
+const files = selected
+  ? [`acedatacloud-ai-sdk-${selected}-0.1.0.tgz`]
+  : readdirSync(dir).filter(file => file.endsWith('.tgz')).sort();
+for(const file of files){
   const path=resolve(dir,file);
   const manifest=JSON.parse(execFileSync('tar',['-xOf',path,'package/package.json'],{encoding:'utf8'}));
-  const match=/^@acedatacloud\/ai-sdk-(suno|seedance|happyhorse|gpt-image|nano-banana)$/.exec(manifest.name);
-  if(!match||manifest.version!=='0.1.0')throw new Error('Unexpected package identity');
-  const state={name:manifest.name,version:manifest.version,slug:match[1],integrity:'sha512-'+createHash('sha512').update(readFileSync(path)).digest('base64'),status:'NOT_SUBMITTED'};
+  const slug = allowed.find(name => manifest.name === `@acedatacloud/ai-sdk-${name}`);
+  if (!slug || (selected && selected !== slug) || manifest.version !== '0.1.0') throw new Error('Unexpected package identity');
+  const state={name:manifest.name,version:manifest.version,slug,integrity:'sha512-'+createHash('sha512').update(readFileSync(path)).digest('base64'),status:'NOT_SUBMITTED'};
   states.push(state);save();
   const found=lookup(manifest.name);
   if(check(state,found))continue;
   if(found.error!=='E404')throw new Error(`Registry ${found.error}; no new publication for ${manifest.name}`);
-  if(accepted.has(match[1])){
+  if(accepted.has(slug)){
     state.status='ACCEPTED_PENDING_PUBLIC';state.note='Previous run returned npm publish success; no republish';save();continue;
   }
   const r=spawnSync('npm',['publish',path,'--access','public','--provenance','--ignore-scripts','--registry=https://registry.npmjs.org','--fetch-retries=0','--fetch-timeout=15000'],{stdio:'inherit'});
